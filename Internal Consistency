@@ -1,3 +1,11 @@
+#Internal Consistency
+#This code will provide:
+#Overall Cronbach's alpha of each instrument (ARI, CAMM, DERS, DTS) in total
+#Cronbach's alpha if item were to be deleted. 
+#Cronbach's alpha of any sub scales found in each instrument.
+#Item-to-Item, Item-to-Total correlation
+
+###R code:
 library(psych)
 
 Aris_B_CA <- data.frame(Aris_B[,1:6])
