@@ -1,0 +1,57 @@
+library(psych)
+
+Aris_B_CA <- data.frame(Aris_B[,1:6])
+alpha(Aris_B_CA)
+cor.ci(Aris_B_CA)
+
+Camm_B_CA <- data.frame(Camm_B[,1:10])
+alpha(Camm_B_CA)
+cor.ci(Camm_B_CA)
+
+DtsAb_B_CA <- data.frame(Dts_B_Absorption[,1:3])
+alpha(DtsAb_B_CA)
+cor.ci(DtsAb_B_CA)
+
+DtsAp_B_CA <- data.frame(Dts_B_Appraisal[,1:6])
+alpha(DtsAp_B_CA)
+cor.ci(DtsAp_B_CA)
+
+DtsReg_B_CA <- data.frame(Dts_B_Regulation[,1:3])
+alpha(DtsReg_B_CA)
+cor.ci(DtsReg_B_CA)
+
+DtsTol_B_CA <- data.frame(Dts_B_Tolerance[,1:3])
+alpha(DtsTol_B_CA)
+cor.ci(DtsTol_B_CA)
+
+Dts_B_CA <- data.frame(MC[,36:50])
+alpha(Dts_B_CA)
+cor.ci(Dts_B_CA)
+
+DtsAp_B_CA6 <- data.frame(Dts_B_Appraisal[,2:6])
+alpha(DtsAp_B_CA6)
+cor.ci(DtsAp_B_CA6)
+
+Ders_B_CA <- data.frame(MC[,20:35])
+alpha(Ders_B_CA)
+cor.ci(Ders_B_CA)
+
+DersC_B_CA <- data.frame(Ders_B_Clarity[,1:2])
+alpha(DersC_B_CA)
+cor.ci(DersC_B_CA)
+
+DersG_B_CA <- data.frame(Ders_B_Goals[,1:3])
+alpha(DersG_B_CA)
+cor.ci(DersG_B_CA)
+
+DersI_B_CA <- data.frame(Ders_B_Impulse[,1:3])
+alpha(DersI_B_CA)
+cor.ci(DersI_B_CA)
+
+DersN_B_CA <- data.frame(Ders_B_Nonacceptance[,1:3])
+alpha(DersN_B_CA)
+cor.ci(DersN_B_CA)
+
+DersS_B_CA <- data.frame(Ders_B_Strategies[,1:5])
+alpha(DersS_B_CA)
+cor.ci(DersS_B_CA)
