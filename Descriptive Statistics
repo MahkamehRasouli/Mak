@@ -1,0 +1,216 @@
+#Make dataframe(s) of scales and sub-scales
+
+Aris_B <- MC %>% 
+  select(ARI1_B, ARI2_B, ARI3_B, ARI4_B, ARI5_B, ARI6_B)
+
+Camm_B <- MC %>% 
+  select(CAMM1_B, CAMM2_B, CAMM3_B, CAMM4_B, CAMM5_B, CAMM6_B, CAMM7_B, CAMM8_B, CAMM9_B, CAMM10_B)
+ 
+Ders_B_Clarity <- MC %>% 
+  select(DERS1_B, DERS2_B)
+
+Ders_B_Goals <- MC %>% 
+  select(DERS3_B, DERS7_B, DERS15_B)
+
+Ders_B_Impulse <- MC %>% 
+  select(DERS4_B, DERS8_B, DERS11_B)
+
+Ders_B_Strategies <- MC %>% 
+  select(DERS5_B, DERS6_B, DERS12_B, DERS14_B, DERS16_B)
+
+Ders_B_Nonacceptance <- MC %>% 
+  select(DERS9_B, DERS10_B, DERS13_B)
+
+Dts_B_Tolerance <- MC %>% 
+  select(DTS1_B, DTS3_B, DTS5_B)
+
+Dts_B_Appraisal <- MC %>% 
+  select(DTS6_B, DTS7_B, DTS9_B, DTS10_B, DTS11_B, DTS12_B)
+
+Dts_B_Absorption <- MC %>% 
+  select(DTS2_B, DTS4_B, DTS15_B)
+
+Dts_B_Regulation <- MC %>% 
+  select(DTS8_B, DTS13_B, DTS14_B)
+  
+#Create total score variable(s)
+
+Aris_total <- rowSums(Aris_B) 
+Aris_B <- cbind(Aris_B, Aris_total)
+
+Camm_total <- rowSums(Camm_B) 
+Camm_B <- cbind(Camm_B, Camm_total)
+
+Ders2_total <- rowSums(Ders_B) 
+Ders2_B <- cbind(Ders_B, Ders2_total)
+
+Ders2_B %>% 
+  filter(!is.na(Ders2_total)) %>% 
+  summarize(Mean = mean(Ders2_total), Standard_deviation = sd(Ders2_total), Max = max(Ders2_total), Min = min(Ders2_total))
+
+Ders_total_C <- rowSums(Ders_B_Clarity) 
+Ders_B_Clarity <- cbind(Ders_B_Clarity, Ders_total_C)
+
+Ders_total_G <- rowSums(Ders_B_Goals) 
+Ders_B_Goals <- cbind(Ders_B_Goals, Ders_total_G)
+
+Ders_total_I <- rowSums(Ders_B_Impulse) 
+Ders_B_Impulse <- cbind(Ders_B_Impulse, Ders_total_I)
+
+Ders_total_N <- rowSums(Ders_B_Nonacceptance) 
+Ders_B_Nonacceptance <- cbind(Ders_B_Nonacceptance, Ders_total_N)
+
+Ders_total_S <- rowSums(Ders_B_Strategies) 
+Ders_B_Strategies <- cbind(Ders_B_Strategies, Ders_total_S)
+
+Ders_B <- cbind.data.frame(Ders_total_C, Ders_total_G, Ders_total_I, Ders_total_N, Ders_total_S)
+Dts_B <- cbind.data.frame(Dts_total_Ab, Dts_total_Ap, Dts_total_R, Dts_total_T)
+
+Dts_total_Ab <- rowSums(Dts_B_Absorption) 
+Dts_B_Absorption <- cbind(Dts_B_Absorption, Dts_total_Ab)
+
+Dts_total_Ap <- rowSums(Dts_B_Appraisal) 
+Dts_B_Appraisal <- cbind(Dts_B_Appraisal, Dts_total_Ap)
+
+Dts_total_R <- rowSums(Dts_B_Regulation) 
+Dts_B_Regulation <- cbind(Dts_B_Regulation, Dts_total_R)
+
+Dts_total_T <- rowSums(Dts_B_Tolerance) 
+Dts_B_Tolerance <- cbind(Dts_B_Tolerance, Dts_total_T)
+
+#Descriptive statistics of the sample
+MC %>% 
+  filter(!is.na(Age)) %>% 
+  summarize(Mean = mean(Age), Standard_deviation = sd(Age), Max = max(Age), Min = min(Age))
+
+MC %>% 
+  count(Gender) %>% mutate(prop.table(n) * 100)
+  
+#Descriptive statistics of the scales in the sample
+Aris_B %>% 
+  filter(!is.na(Aris_total))
+  summary(Aris_total)
+  
+Aris_B %>% 
+  filter(!is.na(Aris_total)) %>% 
+  summarize(Mean = mean(Aris_total), Standard_deviation = sd(Aris_total), Max = max(Aris_total), Min = min(Aris_total))
+  
+Camm_B %>% 
+  filter(!is.na(Camm_total))
+  summary(Camm_total)
+  
+Camm_B %>% 
+  filter(!is.na(Camm_total)) %>% 
+  summarize(Mean = mean(Camm_total), Standard_deviation = sd(Camm_total), Max = max(Camm_total), Min = min(Camm_total))
+  
+Ders_B %>% 
+  filter(!is.na(Ders_total_C))
+  summary(Ders_total_C)
+  
+Ders_B %>% 
+  filter(!is.na(Ders_total_C)) %>% 
+  summarize(Mean = mean(Ders_total_C), Standard_deviation = sd(Ders_total_C), Max = max(Ders_total_C), Min = min(Ders_total_C))
+  
+Ders_B %>% 
+  filter(!is.na(Ders_total_G))
+  summary(Ders_total_G)
+  
+Ders_B %>% 
+  filter(!is.na(Ders_total_G)) %>% 
+  summarize(Mean = mean(Ders_total_G), Standard_deviation = sd(Ders_total_G), Max = max(Ders_total_G), Min = min(Ders_total_G))
+  
+Ders_B %>% 
+  filter(!is.na(Ders_total_I))
+  summary(Ders_total_I)
+  
+Ders_B %>% 
+  filter(!is.na(Ders_total_I)) %>% 
+  summarize(Mean = mean(Ders_total_I), Standard_deviation = sd(Ders_total_I), Max = max(Ders_total_I), Min = min(Ders_total_I))
+  
+Ders_B %>% 
+  filter(!is.na(Ders_total_N))
+  summary(Ders_total_N)
+  
+Ders_B %>% 
+  filter(!is.na(Ders_total_N)) %>% 
+  summarize(Mean = mean(Ders_total_N), Standard_deviation = sd(Ders_total_N), Max = max(Ders_total_N), Min = min(Ders_total_N))
+  
+Ders_B %>% 
+  filter(!is.na(Ders_total_S))
+  summary(Ders_total_S)
+  
+Ders_B %>% 
+  filter(!is.na(Ders_total_S)) %>% 
+  summarize(Mean = mean(Ders_total_S), Standard_deviation = sd(Ders_total_S), Max = max(Ders_total_S), Min = min(Ders_total_S))
+  
+Ders_Ave <- Ders_B %>% 
+  filter(!is.na(Ders_total_S))
+
+Ders_Ave <- Ders_Ave %>% 
+  filter(!is.na(Ders_total_N))
+
+Ders_Ave <- Ders_Ave %>% 
+  filter(!is.na(Ders_total_I))
+
+Ders_Ave <- Ders_Ave %>% 
+  filter(!is.na(Ders_total_C))
+
+Ders_Ave <- Ders_Ave %>% 
+  filter(!is.na(Ders_total_G))
+
+Ders_No_NA <- Ders_B %>%
+  select(Ders_total_G, Ders_total_C, Ders_total_I, Ders_total_N, Ders_total_S)%>%
+  drop_na()
+
+Ders_Ave <- Ders_No_NA %>%
+  select(where(is.numeric)) %>%
+  summarise(across(everything(), mean))
+
+Ders_Ave_Ave <- Ders_Ave %>% 
+  rowwise() %>%
+  summarize(Mean = mean(Ders_total_T), Standard_deviation = sd(Ders_total_T), Max = max(Ders_total_T), Min = min(Ders_total_T))
+  
+Dts_B %>% 
+  filter(!is.na(Dts_total_Ab))
+  summary(Dts_total_Ab)
+  
+Dts_B %>% 
+  filter(!is.na(Dts_total_Ab)) %>% 
+  summarize(Mean = mean(Dts_total_Ab), Standard_deviation = sd(Dts_total_Ab), Max = max(Dts_total_Ab), Min = min(Dts_total_Ab))
+  
+Dts_B %>% 
+  filter(!is.na(Dts_total_Ap))
+  summary(Dts_total_Ap)
+  
+Dts_B %>% 
+  filter(!is.na(Dts_total_Ap)) %>% 
+  summarize(Mean = mean(Dts_total_Ap), Standard_deviation = sd(Dts_total_Ap), Max = max(Dts_total_Ap), Min = min(Dts_total_Ap))
+  
+Dts_B %>% 
+  filter(!is.na(Dts_total_R))
+  summary(Dts_total_R)
+  
+Dts_B %>% 
+  filter(!is.na(Dts_total_R)) %>% 
+  summarize(Mean = mean(Dts_total_R), Standard_deviation = sd(Dts_total_R), Max = max(Dts_total_R), Min = min(Dts_total_R))
+  
+Dts_B %>% 
+  filter(!is.na(Dts_total_T))
+  summary(Dts_total_T)
+  
+Dts_B %>% 
+  filter(!is.na(Dts_total_T)) %>% 
+  summarize(Mean = mean(Dts_total_T), Standard_deviation = sd(Dts_total_T), Max = max(Dts_total_T), Min = min(Dts_total_T))
+  
+  Dts_Ave <- cbind.data.frame(mean(Dts_total_Ab), mean(Dts_total_Ap), mean(Dts_total_R), mean(Dts_total_T))
+
+Dts_Ave_Ave <- Dts_Ave%>% 
+  rowMeans(1)
+
+Dts_Ave_Ave <- Dts_Ave %>% 
+  rowwise() %>%
+  mutate(SD = sd(c(Dts_total_Ab, Dts_total_Ap, Dts_total_R, Dts_total_T))
+         
+Dts_Ave %>% 
+  rowwise() %>%
+  mutate(Mean = mean(c(Dts_total_Ab, Dts_total_Ap, Dts_total_R, Dts_total_T))
