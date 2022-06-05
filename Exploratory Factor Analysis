@@ -1,0 +1,45 @@
+Dts_Full <- MC %>% 
+  select(36:50)
+
+datamatrix <- cor(Dts_Full[, ])
+corrplot(datamatrix, method="number")
+
+X <- Dts_Full[,-c(15)]
+Y <- Dts_Full[,15]
+
+KMO(r=cor(X))
+
+cortest.bartlett(X)
+
+det(cor(X))
+
+library(ggplot2)
+fafitfree <- fa(Dts_Full,nfactors = ncol(X), rotate = "none")
+n_factors <- length(fafitfree$e.values)
+scree     <- data.frame(
+  Factor_n =  as.factor(1:n_factors), 
+  Eigenvalue = fafitfree$e.values)
+ggplot(scree, aes(x = Factor_n, y = Eigenvalue, group = 1)) + 
+  geom_point() + geom_line() +
+  xlab("Number of factors") +
+  ylab("Initial eigenvalue") +
+  labs( title = "Scree Plot", 
+        subtitle = "(Based on the unreduced correlation matrix)")
+
+parallel <- fa.parallel(X)
+
+factanal.none <- factanal(X, factors=2, scores = c("regression"), rotation = "varimax")
+print(factanal.none)
+
+fa.none <- fa(r=X, 
+ nfactors = 2,
+ max.iter=100)
+print(fa.none)
+
+fa.diagram(fa.none)
+
+fa.none1 <- fa(r=X, 
+ max.iter=50)
+print(fa.none)
+
+fa.diagram(fa.none1)
