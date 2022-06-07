@@ -1,4 +1,5 @@
 #Make dataframe(s) of scales and sub-scales
+###When you want to import the data into R, please change the file's name to "MC" and then you can use these codes.
 
 Aris_B <- MC %>% 
   select(ARI1_B, ARI2_B, ARI3_B, ARI4_B, ARI5_B, ARI6_B)
