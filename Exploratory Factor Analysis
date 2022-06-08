@@ -4,8 +4,7 @@ Dts_Full <- MC %>%
 datamatrix <- cor(Dts_Full[, ])
 corrplot(datamatrix, method="number")
 
-X <- Dts_Full[,-c(15)]
-Y <- Dts_Full[,15]
+X <- Dts_Full[1:15]
 
 KMO(r=cor(X))
 
@@ -43,3 +42,17 @@ fa.none1 <- fa(r=X,
 print(fa.none)
 
 fa.diagram(fa.none1)
+
+DTS_Factor1 <- Dts_Full %>% 
+  select(DTS1_B, DTS2_B, DTS3_B, DTS4_B, DTS5_B, DTS7_B, DTS9_B, DTS10_B, DTS11_B, DTS12_B, DTS15_B)
+
+Dts_Fac1 <- data.frame(DTS_Factor1)
+alpha(Dts_Fac1)
+cor.ci(Dts_Fac1)
+
+DTS_Factor2 <- Dts_Full %>% 
+  select(DTS8_B, DTS13_B, DTS14_B)
+
+DTS_Fac2 <- data.frame(DTS_Factor2)
+alpha(DTS_Fac2)
+cor.ci(DTS_Fac2)
